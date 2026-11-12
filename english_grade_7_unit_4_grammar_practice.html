@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ôn Tập Tiếng Anh 7 - Unit 4: Music and Arts (Comparisons)</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter & Feather Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            400: '#38bdf8',
+                            500: '#0284c7',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                        },
+                        accent: {
+                            500: '#8b5cf6',
+                            600: '#7c3aed',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Lexend', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Lexend', sans-serif;
+            background: linear-gradient(135deg, #e0f2fe 0%, #f3e8ff 100%);
+            min-height: 100vh;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        .option-btn {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .option-btn:hover {
+            transform: translateY(-2px);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="text-slate-800 p-3 sm:p-6 flex flex-col justify-between min-h-screen">
+
+    <!-- Header / Navbar -->
+    <header class="max-w-4xl mx-auto w-full mb-4">
+        <div class="glass-card rounded-2xl p-4 shadow-sm flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-12 h-12 bg-gradient-to-tr from-sky-500 to-indigo-600 rounded-xl flex items-center justify-center text-white text-2xl font-bold shadow-md">
+                    <i class="fa-solid fa-music"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg sm:text-xl text-slate-800 leading-tight">Ôn Tập Tiếng Anh 7</h1>
+                    <p class="text-xs sm:text-sm text-sky-600 font-medium">Unit 4: Music and Arts - Grammar Comparisons</p>
+                </div>
+            </div>
+            
+            <button id="configBtn" onclick="toggleConfigModal()" class="text-slate-500 hover:text-sky-600 p-2 rounded-lg hover:bg-sky-50 transition" title="Cấu hình Google Sheets">
+                <i class="fa-solid fa-gear text-xl"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-4xl mx-auto w-full flex-grow">
+
+        <!-- ==================== MÀN HÌNH 1: ĐĂNG KÝ THÔNG TIN ==================== -->
+        <div id="screenStudentInfo" class="glass-card rounded-3xl p-6 sm:p-10 shadow-xl max-w-xl mx-auto transform transition-all duration-300">
+            <div class="text-center mb-8">
+                <span class="bg-sky-100 text-sky-700 font-semibold text-xs px-3 py-1.5 rounded-full uppercase tracking-wider">Lớp 7 - Global Success</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-800 mt-3 mb-2">Thông Tin Học Sinh</h2>
+                <p class="text-slate-500 text-sm">Vui lòng nhập đầy đủ thông tin trước khi bắt đầu bài làm 20 câu trắc nghiệm (Thang điểm 10).</p>
+            </div>
+
+            <form id="studentForm" onsubmit="startQuiz(event)" class="space-y-5">
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-1.5"><i class="fa-solid fa-user text-sky-500 mr-2"></i>Họ và tên học sinh <span class="text-rose-500">*</span></label>
+                    <input type="text" id="studentName" required placeholder="Ví dụ: Nguyễn Văn An" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-sky-500 focus:ring-4 focus:ring-sky-100 outline-none transition text-sm">
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1.5"><i class="fa-solid fa-users text-sky-500 mr-2"></i>Lớp <span class="text-rose-500">*</span></label>
+                        <input type="text" id="studentClass" required placeholder="Ví dụ: 7A1" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-sky-500 focus:ring-4 focus:ring-sky-100 outline-none transition text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1.5"><i class="fa-solid fa-school text-sky-500 mr-2"></i>Trường <span class="text-rose-500">*</span></label>
+                        <input type="text" id="studentSchool" required placeholder="Ví dụ: THCS Nguyễn Du" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-sky-500 focus:ring-4 focus:ring-sky-100 outline-none transition text-sm">
+                    </div>
+                </div>
+
+                <!-- Cấu trúc bài thi tóm tắt -->
+                <div class="bg-slate-50 rounded-2xl p-4 border border-slate-100 text-xs text-slate-600 space-y-2">
+                    <div class="font-semibold text-slate-700 mb-1 flex items-center"><i class="fa-solid fa-circle-info text-amber-500 mr-2"></i>Cấu trúc bài luyện tập:</div>
+                    <div class="flex justify-between"><span>• Số lượng câu hỏi:</span> <span class="font-semibold text-slate-800">20 câu trắc nghiệm</span></div>
+                    <div class="flex justify-between"><span>• Điểm chuẩn:</span> <span class="font-semibold text-slate-800">0.5 điểm / câu (Tối đa 10đ)</span></div>
+                    <div class="flex justify-between"><span>• Kiến thức trọng tâm:</span> <span class="font-semibold text-sky-600">as...as, not as...as, different from, the same as</span></div>
+                </div>
+
+                <button type="submit" class="w-full py-4 bg-gradient-to-r from-sky-500 to-indigo-600 text-white font-bold rounded-xl shadow-lg shadow-sky-500/30 hover:shadow-sky-500/50 hover:scale-[1.01] active:scale-[0.99] transition duration-200 flex items-center justify-center space-x-2 text-base">
+                    <span>Bắt Đầu Làm Bài</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </form>
+        </div>
+
+        <!-- ==================== MÀN HÌNH 2: GIAO DIỆN LÀM BÀI ==================== -->
+        <div id="screenQuiz" class="hidden glass-card rounded-3xl p-4 sm:p-8 shadow-xl">
+            <!-- Header bài thi: Thông tin + Đồng hồ + Progress -->
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 pb-4 border-b border-slate-100">
+                <div>
+                    <div class="text-xs text-slate-500 uppercase tracking-wider font-semibold">Học sinh</div>
+                    <div id="quizStudentDisplay" class="font-bold text-slate-800 text-base">---</div>
+                </div>
+
+                <div class="flex items-center space-x-4 w-full sm:w-auto justify-between sm:justify-end">
+                    <!-- Đồng hồ đếm thời gian -->
+                    <div class="bg-amber-50 border border-amber-200 text-amber-700 px-4 py-2 rounded-xl flex items-center space-x-2 font-mono font-bold text-sm">
+                        <i class="fa-regular fa-clock animate-pulse"></i>
+                        <span id="timerDisplay">00:00</span>
+                    </div>
+
+                    <!-- Tiến trình -->
+                    <div class="text-right">
+                        <span id="questionCounter" class="text-sm font-bold text-sky-600">Câu 1/20</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="w-full bg-slate-100 rounded-full h-2.5 mb-8 overflow-hidden">
+                <div id="progressBar" class="bg-gradient-to-r from-sky-400 to-indigo-600 h-2.5 rounded-full transition-all duration-300" style="width: 5%"></div>
+            </div>
+
+            <!-- Nội dung câu hỏi -->
+            <div class="min-h-[280px]">
+                <div class="mb-6">
+                    <span id="questionTag" class="inline-block bg-sky-100 text-sky-800 text-xs font-bold px-3 py-1 rounded-md mb-2">Ngữ pháp Unit 4</span>
+                    <h3 id="questionText" class="text-lg sm:text-xl font-bold text-slate-800 leading-snug">Đang tải câu hỏi...</h3>
+                </div>
+
+                <!-- Danh sách đáp án -->
+                <div id="optionsContainer" class="grid grid-cols-1 gap-3.5 mb-8">
+                    <!-- Render ngẫu nhiên bằng JS -->
+                </div>
+            </div>
+
+            <!-- Điều hướng bài làm -->
+            <div class="flex justify-between items-center pt-4 border-t border-slate-100">
+                <button id="prevBtn" onclick="navigateQuestion(-1)" class="px-5 py-2.5 rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-50 font-semibold text-sm transition flex items-center space-x-2 disabled:opacity-40 disabled:cursor-not-allowed">
+                    <i class="fa-solid fa-chevron-left"></i>
+                    <span>Câu trước</span>
+                </button>
+
+                <!-- Grid chuyển nhanh câu hỏi (Mini Palette) -->
+                <button onclick="togglePaletteModal()" class="text-slate-500 hover:text-sky-600 text-xs font-semibold px-3 py-2 rounded-lg hover:bg-slate-100">
+                    <i class="fa-solid fa-grid-2 mr-1"></i> Danh sách câu
+                </button>
+
+                <button id="nextBtn" onclick="navigateQuestion(1)" class="px-6 py-2.5 rounded-xl bg-sky-600 text-white hover:bg-sky-700 font-semibold text-sm shadow-md transition flex items-center space-x-2">
+                    <span>Câu tiếp</span>
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+
+                <button id="submitBtn" onclick="confirmSubmit()" class="hidden px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-lg shadow-emerald-600/30 transition flex items-center space-x-2">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    <span>Nộp Bài</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- ==================== MÀN HÌNH 3: KẾT QUẢ & CHI TIẾT BÀI LÀM ==================== -->
+        <div id="screenResult" class="hidden space-y-6">
+            <!-- Thẻ tổng quan điểm -->
+            <div class="glass-card rounded-3xl p-6 sm:p-8 shadow-xl text-center relative overflow-hidden">
+                <div class="absolute -right-10 -top-10 w-40 h-40 bg-sky-200/40 rounded-full filter blur-2xl pointer-events-none"></div>
+                <div class="absolute -left-10 -bottom-10 w-40 h-40 bg-indigo-200/40 rounded-full filter blur-2xl pointer-events-none"></div>
+
+                <span class="inline-block px-4 py-1.5 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold uppercase tracking-wider mb-3">Hoàn Thành Bài Thi</span>
+                
+                <h2 id="resultStudentName" class="text-xl sm:text-2xl font-extrabold text-slate-800 mb-1">---</h2>
+                <p id="resultStudentMeta" class="text-slate-500 text-sm mb-6">Lớp: --- | Trường: ---</p>
+
+                <!-- Vòng tròn điểm số -->
+                <div class="relative w-36 h-36 mx-auto mb-6 flex items-center justify-center rounded-full bg-gradient-to-tr from-sky-500 to-indigo-600 text-white shadow-xl">
+                    <div class="text-center">
+                        <span id="finalScore" class="text-4xl font-extrabold block leading-none">0.0</span>
+                        <span class="text-xs opacity-80 uppercase tracking-widest font-semibold mt-1 block">Thang điểm 10</span>
+                    </div>
+                </div>
+
+                <!-- Thông số chi tiết -->
+                <div class="grid grid-cols-3 gap-2 sm:gap-4 max-w-md mx-auto mb-6">
+                    <div class="bg-slate-50 p-3 rounded-2xl border border-slate-100">
+                        <div class="text-xs text-slate-400 font-semibold mb-1">Số câu đúng</div>
+                        <div id="correctCount" class="text-lg font-bold text-emerald-600">0/20</div>
+                    </div>
+                    <div class="bg-slate-50 p-3 rounded-2xl border border-slate-100">
+                        <div class="text-xs text-slate-400 font-semibold mb-1">Thời gian làm</div>
+                        <div id="timeTaken" class="text-lg font-bold text-slate-700">00:00</div>
+                    </div>
+                    <div class="bg-slate-50 p-3 rounded-2xl border border-slate-100">
+                        <div class="text-xs text-slate-400 font-semibold mb-1">Trạng thái gửi</div>
+                        <div id="sheetStatus" class="text-xs font-bold text-amber-600 mt-1">Đang đồng bộ...</div>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap justify-center gap-3">
+                    <button onclick="restartQuiz()" class="px-5 py-2.5 bg-slate-800 hover:bg-slate-900 text-white font-semibold text-sm rounded-xl transition shadow-md flex items-center space-x-2">
+                        <i class="fa-solid fa-rotate-right"></i>
+                        <span>Làm Lại Bài</span>
+                    </button>
+                    <a href="#detailedAnswers" class="px-5 py-2.5 bg-sky-100 text-sky-800 hover:bg-sky-200 font-semibold text-sm rounded-xl transition flex items-center space-x-2">
+                        <i class="fa-solid fa-list-check"></i>
+                        <span>Xem Đáp Án Chi Tiết</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Danh sách chi tiết các câu đúng/sai -->
+            <div id="detailedAnswers" class="glass-card rounded-3xl p-6 sm:p-8 shadow-xl space-y-6">
+                <div class="flex items-center justify-between pb-4 border-b border-slate-100">
+                    <h3 class="text-lg font-bold text-slate-800 flex items-center">
+                        <i class="fa-solid fa-file-signature text-sky-500 mr-2"></i>
+                        Chi Tiết Bài Làm & Giải Thích
+                    </h3>
+                    <span class="text-xs text-slate-500">Global Success 7 - Unit 4</span>
+                </div>
+
+                <div id="reviewContainer" class="space-y-4">
+                    <!-- Javascript sẽ render chi tiết tại đây -->
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="max-w-4xl mx-auto w-full text-center text-xs text-slate-500 mt-8 py-2">
+        <p>© Ôn Tập Tiếng Anh 7 Global Success - Unit 4: Music and Arts. Thiết kế tối ưu cho học sinh THCS.</p>
+    </footer>
+
+    <!-- MODAL 1: CẤU HÌNH GOOGLE APPS SCRIPT -->
+    <div id="configModal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="glass-card bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative animate-fade-in">
+            <button onclick="toggleConfigModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-600 text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="flex items-center space-x-3 mb-4">
+                <div class="w-10 h-10 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center text-xl font-bold">
+                    <i class="fa-solid fa-file-excel"></i>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-slate-800">Cấu hình Google Sheets</h3>
+                    <p class="text-xs text-slate-500">Gửi điểm tự động về Google Bảng tính của giáo viên</p>
+                </div>
+            </div>
+
+            <div class="space-y-4 text-sm text-slate-600">
+                <div>
+                    <label class="block font-semibold text-slate-700 mb-1">Web App Script URL:</label>
+                    <input type="url" id="scriptUrlInput" placeholder="https://script.google.com/macros/s/.../exec" class="w-full px-3 py-2.5 rounded-xl border border-slate-300 focus:border-sky-500 outline-none text-xs font-mono">
+                </div>
+
+                <div class="bg-amber-50 p-3.5 rounded-xl border border-amber-200 text-xs space-y-1.5 text-amber-900">
+                    <div class="font-bold flex items-center text-amber-700"><i class="fa-solid fa-lightbulb mr-1.5"></i> Hướng dẫn kết nối nhanh:</div>
+                    <ol class="list-decimal list-inside space-y-1 opacity-90">
+                        <li>Tạo Google Sheet mới trên Drive.</li>
+                        <li>Vào <b>Tiện ích mở rộng</b> &gt; <b>Apps Script</b>.</li>
+                        <li>Dán đoạn mã Script xử lý nhận dữ liệu POST (như mô tả bên dưới).</li>
+                        <li>Nhấp <b>Triển khai</b> &gt; <b>Tạo bản triển khai mới</b> &gt; Chọn <b>Ứng dụng Web</b> &gt; Quyền truy cập: <b>"Bất kỳ ai" (Anyone)</b>.</li>
+                        <li>Sao chép URL Web App và dán vào ô trên.</li>
+                    </ol>
+                </div>
+
+                <div class="pt-2 flex justify-end space-x-3">
+                    <button onclick="toggleConfigModal()" class="px-4 py-2 rounded-xl border border-slate-200 text-slate-600 font-semibold text-xs hover:bg-slate-50">Đóng</button>
+                    <button onclick="saveConfig()" class="px-5 py-2 rounded-xl bg-sky-600 text-white font-semibold text-xs hover:bg-sky-700 shadow-md">Lưu Cấu Hình</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 2: PALETTE DANH SÁCH CÂU HỎI -->
+    <div id="paletteModal" class="hidden fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="glass-card bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="font-bold text-slate-800">Danh Sách Câu Hỏi</h3>
+                <button onclick="togglePaletteModal()" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div id="questionGrid" class="grid grid-cols-5 gap-2 max-h-60 overflow-y-auto p-1">
+                <!-- Javascript render câu 1-20 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC XỬ LÝ -->
+    <script>
+        // ==================== BỘ 20 CÂU HỎI NGỮ PHÁP UNIT 4 (COMPARISONS) ====================
+        const quizData = [
+            {
+                id: 1,
+                question: "Classical music is ________ popular among teenagers ________ pop music.",
+                options: ["A. not as / as", "B. so / as", "C. different / from", "D. same / as"],
+                correct: 0,
+                explanation: "Cấu trúc so sánh không bằng: 'not as + adj + as'. Nhạc cổ điển không phổ biến bằng nhạc pop với giới trẻ."
+            },
+            {
+                id: 2,
+                question: "The painting in the gallery is ________ the one I saw at home.",
+                options: ["A. as different", "B. different from", "C. different as", "D. the same from"],
+                correct: 1,
+                explanation: "Cấu trúc so sánh khác nhau: 'different from' (khác với)."
+            },
+            {
+                id: 3,
+                question: "Her ticket price is $20, and my ticket is $20 too. My ticket price is ________ hers.",
+                options: ["A. different from", "B. not as high as", "C. the same as", "D. as different as"],
+                correct: 2,
+                explanation: "Cấu trúc so sánh giống nhau: 'the same as'. Giá vé của hai người bằng nhau ($20)."
+            },
+            {
+                id: 4,
+                question: "Playing the guitar is not ________ easy ________ it looks.",
+                options: ["A. as / as", "B. as / from", "C. same / as", "D. different / than"],
+                correct: 0,
+                explanation: "Cấu trúc so sánh bằng/không bằng: '(not) as + adj + as'."
+            },
+            {
+                id: 5,
+                question: "This opera house is modern, but that one is old. That opera house is ________ this one.",
+                options: ["A. the same as", "B. as modern as", "C. different from", "D. as old as"],
+                correct: 2,
+                explanation: "Một cái hiện đại, một cái cổ kính nên hai nhà hát này khác nhau: 'different from'."
+            },
+            {
+                id: 6,
+                question: "Lan's taste in music is ________ mine. She likes rock, but I love jazz.",
+                options: ["A. the same as", "B. different from", "C. as same as", "D. not different from"],
+                correct: 1,
+                explanation: "Lan thích rock còn tôi thích jazz, do đó gu âm nhạc là khác nhau ('different from')."
+            },
+            {
+                id: 7,
+                question: "The modern art exhibition is not ________ interesting ________ the traditional puppet show.",
+                options: ["A. as / as", "B. so / than", "C. different / as", "D. same / as"],
+                correct: 0,
+                explanation: "Cấu trúc phủ định so sánh ngang bằng: 'not as + adj + as'."
+            },
+            {
+                id: 8,
+                question: "His new song is ________ his old one; both have a catchy rhythm and sweet melody.",
+                options: ["A. different from", "B. as different as", "C. the same as", "D. not as good as"],
+                correct: 2,
+                explanation: "Cả hai bài hát đều có giai điệu bắt tai và ngọt ngào nên bài mới giống bài cũ ('the same as')."
+            },
+            {
+                id: 9,
+                question: "Water puppetry is a traditional art form. It is ________ any other show in the world.",
+                options: ["A. the same as", "B. different from", "C. as same as", "D. not as different"],
+                correct: 1,
+                explanation: "Múa rối nước là loại hình nghệ thuật truyền thống độc đáo, khác biệt với các buổi biểu diễn khác ('different from')."
+            },
+            {
+                id: 10,
+                question: "Is drawing a portrait ________ difficult ________ painting a landscape?",
+                options: ["A. as / as", "B. same / as", "C. different / from", "D. as / from"],
+                correct: 0,
+                explanation: "Câu hỏi so sánh ngang bằng: 'Is + S + as + adj + as + ...?'"
+            },
+            {
+                id: 11,
+                question: "My sister's favorite musical instrument is the violin, and my cousin's is ________ hers.",
+                options: ["A. the same as", "B. different to", "C. as different as", "D. not as same as"],
+                correct: 0,
+                explanation: "Cả hai đều thích đàn violin nên dùng 'the same as'."
+            },
+            {
+                id: 12,
+                question: "The sound of a piano is totally ________ the sound of a drum.",
+                options: ["A. as same as", "B. different from", "C. not as different", "D. as sound as"],
+                correct: 1,
+                explanation: "Âm thanh của đàn piano hoàn toàn khác với âm thanh của trống: 'different from'."
+            },
+            {
+                id: 13,
+                question: "This camera doesn't take photos ________ clearly ________ that one.",
+                options: ["A. as / as", "B. same / as", "C. different / from", "D. so / than"],
+                correct: 0,
+                explanation: "Cấu trúc phủ định so sánh bằng với trạng từ (clearly): 'not as + adv + as'."
+            },
+            {
+                id: 14,
+                question: "The price of this picture is ________ the price of that portrait. They both cost 50 dollars.",
+                options: ["A. different from", "B. not as high as", "C. the same as", "D. as cheap as"],
+                correct: 2,
+                explanation: "Cả hai bức tranh đều có giá 50 USD nên giá của chúng bằng nhau: 'the same as'."
+            },
+            {
+                id: 15,
+                question: "Pop music is dynamic, whereas folk music is peaceful. Pop music is ________ folk music.",
+                options: ["A. the same as", "B. different from", "C. as peaceful as", "D. not as dynamic"],
+                correct: 1,
+                explanation: "Nhạc Pop sôi động còn nhạc dân gian yên bình, hai loại nhạc khác nhau: 'different from'."
+            },
+            {
+                id: 16,
+                question: "Learning to play the piano is not ________ quick ________ learning the recorder.",
+                options: ["A. as / as", "B. different / from", "C. the same / as", "D. so / from"],
+                correct: 0,
+                explanation: "Cấu trúc so sánh không bằng: 'not as + adj + as'."
+            },
+            {
+                id: 17,
+                question: "Nam's painting style is ________ Phong's; Nam prefers bright colors, while Phong likes dark shades.",
+                options: ["A. the same as", "B. as bright as", "C. different from", "D. not as dark as"],
+                correct: 2,
+                explanation: "Nam thích màu sáng còn Phong thích tông tối nên phong cách vẽ khác nhau: 'different from'."
+            },
+            {
+                id: 18,
+                question: "Her voice is beautiful. She sings ________ an angel.",
+                options: ["A. as sweet as", "B. different from", "C. the same from", "D. not as sweet"],
+                correct: 0,
+                explanation: "So sánh bằng mô tả giọng hát: 'as + adj/adv + as'."
+            },
+            {
+                id: 19,
+                question: "This museum exhibits sculptures that are ________ those displayed in the central park.",
+                options: ["A. as same as", "B. different from", "C. not as different", "D. same to"],
+                correct: 1,
+                explanation: "Các bức tượng điêu khắc ở bảo tàng khác với những bức trưng bày ở công viên: 'different from'."
+            },
+            {
+                id: 20,
+                question: "The lyrics of the new song are ________ the old ones. Nothing has changed.",
+                options: ["A. different from", "B. not as meaningful as", "C. the same as", "D. as different as"],
+                correct: 2,
+                explanation: "Cụm 'Nothing has changed' (Không có gì thay đổi) cho biết lời bài hát mới giống hệt bài cũ: 'the same as'."
+            }
+        ];
+
+        // ==================== STATE VÀ BIẾN TOÀN CỤC ====================
+        let studentData = {
+            name: '',
+            class: '',
+            school: ''
+        };
+
+        let userAnswers = new Array(quizData.length).fill(null);
+        let currentQuestionIndex = 0;
+        let timerInterval = null;
+        let totalSeconds = 0;
+        let googleScriptUrl = localStorage.getItem('app_script_url') || '';
+
+        // ==================== KHỞI TẠO VÀ ĐIỀU HƯỚNG MÀN HÌNH ====================
+        window.onload = function() {
+            if (googleScriptUrl) {
+                document.getElementById('scriptUrlInput').value = googleScriptUrl;
+            }
+        };
+
+        function startQuiz(event) {
+            event.preventDefault();
+            
+            // Lấy thông tin từ form
+            studentData.name = document.getElementById('studentName').value.trim();
+            studentData.class = document.getElementById('studentClass').value.trim();
+            studentData.school = document.getElementById('studentSchool').value.trim();
+
+            if (!studentData.name || !studentData.class || !studentData.school) {
+                alert('Vui lòng điền đầy đủ thông tin cá nhân!');
+                return;
+            }
+
+            // Chuyển giao diện
+            document.getElementById('screenStudentInfo').classList.add('hidden');
+            document.getElementById('screenQuiz').classList.remove('hidden');
+
+            // Hiển thị thông tin
+            document.getElementById('quizStudentDisplay').innerText = `${studentData.name} (${studentData.class} - ${studentData.school})`;
+
+            // Khởi tạo đếm giờ & Render câu hỏi đầu tiên
+            startTimer();
+            renderQuestion(0);
+            renderPalette();
+        }
+
+        function startTimer() {
+            totalSeconds = 0;
+            clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                totalSeconds++;
+                const mins = String(Math.floor(totalSeconds / 60)).padStart(2, '0');
+                const secs = String(totalSeconds % 60).padStart(2, '0');
+                document.getElementById('timerDisplay').innerText = `${mins}:${secs}`;
+            }, 1000);
+        }
+
+        // ==================== RENDER CÂU HỎI VÀ ĐÁP ÁN ====================
+        function renderQuestion(index) {
+            currentQuestionIndex = index;
+            const q = quizData[index];
+
+            // Update Counter & Progress
+            document.getElementById('questionCounter').innerText = `Câu ${index + 1}/${quizData.length}`;
+            const progressPercent = ((index + 1) / quizData.length) * 100;
+            document.getElementById('progressBar').style.width = `${progressPercent}%`;
+
+            // Update Nội dung câu hỏi
+            document.getElementById('questionText').innerText = `Câu ${index + 1}: ${q.question}`;
+
+            // Render Các phương án chọn
+            const container = document.getElementById('optionsContainer');
+            container.innerHTML = '';
+
+            q.options.forEach((opt, optIdx) => {
+                const isSelected = userAnswers[index] === optIdx;
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.onclick = () => selectOption(optIdx);
+                btn.className = `option-btn w-full text-left p-4 rounded-xl border text-sm sm:text-base font-medium transition flex items-center justify-between ${
+                    isSelected 
+                    ? 'border-sky-500 bg-sky-50 text-sky-900 shadow-sm ring-2 ring-sky-300' 
+                    : 'border-slate-200 bg-white hover:bg-slate-50 text-slate-700'
+                }`;
+
+                btn.innerHTML = `
+                    <span>${opt}</span>
+                    <div class="w-6 h-6 rounded-full border ${isSelected ? 'border-sky-500 bg-sky-500 text-white' : 'border-slate-300'} flex items-center justify-center text-xs">
+                        ${isSelected ? '<i class="fa-solid fa-check"></i>' : ''}
+                    </div>
+                `;
+                container.appendChild(btn);
+            });
+
+            // Button Nav Control
+            document.getElementById('prevBtn').disabled = (index === 0);
+            
+            if (index === quizData.length - 1) {
+                document.getElementById('nextBtn').classList.add('hidden');
+                document.getElementById('submitBtn').classList.remove('hidden');
+            } else {
+                document.getElementById('nextBtn').classList.remove('hidden');
+                document.getElementById('submitBtn').classList.add('hidden');
+            }
+        }
+
+        function selectOption(optIndex) {
+            userAnswers[currentQuestionIndex] = optIndex;
+            renderQuestion(currentQuestionIndex);
+            renderPalette();
+        }
+
+        function navigateQuestion(direction) {
+            const newIndex = currentQuestionIndex + direction;
+            if (newIndex >= 0 && newIndex < quizData.length) {
+                renderQuestion(newIndex);
+            }
+        }
+
+        // ==================== MODAL PALETTE CÂU HỎI ====================
+        function togglePaletteModal() {
+            const modal = document.getElementById('paletteModal');
+            modal.classList.toggle('hidden');
+        }
+
+        function renderPalette() {
+            const grid = document.getElementById('questionGrid');
+            grid.innerHTML = '';
+            quizData.forEach((_, idx) => {
+                const isAnswered = userAnswers[idx] !== null;
+                const isCurrent = idx === currentQuestionIndex;
+                const btn = document.createElement('button');
+                btn.onclick = () => {
+                    renderQuestion(idx);
+                    togglePaletteModal();
+                };
+                btn.className = `h-10 rounded-lg text-xs font-bold transition flex items-center justify-center ${
+                    isCurrent ? 'ring-2 ring-sky-500 ring-offset-1' : ''
+                } ${
+                    isAnswered ? 'bg-sky-500 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                }`;
+                btn.innerText = idx + 1;
+                grid.appendChild(btn);
+            });
+        }
+
+        // ==================== NỘP BÀI VÀ CHẤM ĐIỂM ====================
+        function confirmSubmit() {
+            const unansweredCount = userAnswers.filter(a => a === null).length;
+            let msg = 'Bạn có chắc chắn muốn nộp bài?';
+            if (unansweredCount > 0) {
+                msg = `Bạn còn ${unansweredCount} câu chưa trả lời. Bạn vẫn muốn nộp bài chứ?`;
+            }
+
+            if (window.confirm(msg)) {
+                finishQuiz();
+            }
+        }
+
+        function finishQuiz() {
+            clearInterval(timerInterval);
+
+            // Tính điểm: 20 câu, mỗi câu 0.5 điểm
+            let correctNum = 0;
+            quizData.forEach((q, idx) => {
+                if (userAnswers[idx] === q.correct) {
+                    correctNum++;
+                }
+            });
+
+            const score = (correctNum * 0.5).toFixed(1);
+
+            // Hide quiz, Show Result
+            document.getElementById('screenQuiz').classList.add('hidden');
+            document.getElementById('screenResult').classList.remove('hidden');
+
+            // Render Kết Quả
+            document.getElementById('resultStudentName').innerText = studentData.name;
+            document.getElementById('resultStudentMeta').innerText = `Lớp: ${studentData.class} | Trường: ${studentData.school}`;
+            document.getElementById('finalScore').innerText = score;
+            document.getElementById('correctCount').innerText = `${correctNum}/${quizData.length}`;
+
+            const mins = String(Math.floor(totalSeconds / 60)).padStart(2, '0');
+            const secs = String(totalSeconds % 60).padStart(2, '0');
+            const timeStr = `${mins}:${secs}`;
+            document.getElementById('timeTaken').innerText = timeStr;
+
+            // Render Giải Thích Chi Tiết
+            renderDetailedReview();
+
+            // Gửi dữ liệu lên Google Sheets
+            sendDataToGoogleSheets({
+                studentName: studentData.name,
+                studentClass: studentData.class,
+                studentSchool: studentData.school,
+                correctCount: correctNum,
+                totalQuestions: quizData.length,
+                score: score,
+                timeTaken: timeStr,
+                timestamp: new Date().toLocaleString('vi-VN')
+            });
+        }
+
+        function renderDetailedReview() {
+            const container = document.getElementById('reviewContainer');
+            container.innerHTML = '';
+
+            quizData.forEach((q, idx) => {
+                const userChoice = userAnswers[idx];
+                const isCorrect = userChoice === q.correct;
+                const isSkipped = userChoice === null;
+
+                const card = document.createElement('div');
+                card.className = `p-4 sm:p-5 rounded-2xl border transition ${
+                    isCorrect ? 'bg-emerald-50/50 border-emerald-200' : 'bg-rose-50/50 border-rose-200'
+                }`;
+
+                const userChoiceText = isSkipped ? 'Chưa trả lời' : q.options[userChoice];
+                const correctChoiceText = q.options[q.correct];
+
+                card.innerHTML = `
+                    <div class="flex items-start justify-between gap-3 mb-2">
+                        <h4 class="font-bold text-slate-800 text-sm sm:text-base">
+                            <span class="${isCorrect ? 'text-emerald-600' : 'text-rose-600'}">Câu ${idx + 1}:</span> ${q.question}
+                        </h4>
+                        <span class="px-2.5 py-1 rounded-full text-xs font-bold whitespace-nowrap ${
+                            isCorrect ? 'bg-emerald-100 text-emerald-700' : 'bg-rose-100 text-rose-700'
+                        }">
+                            ${isCorrect ? '+0.5 điểm' : '0 điểm'}
+                        </span>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm mb-3">
+                        <div class="p-2.5 rounded-xl ${isCorrect ? 'bg-emerald-100/60 text-emerald-900' : 'bg-rose-100/60 text-rose-900'}">
+                            <span class="font-semibold block text-[11px] opacity-75">Đáp án của bạn:</span>
+                            <span class="font-medium">${userChoiceText}</span>
+                        </div>
+                        <div class="p-2.5 rounded-xl bg-sky-100/60 text-sky-900">
+                            <span class="font-semibold block text-[11px] opacity-75">Đáp án đúng:</span>
+                            <span class="font-bold">${correctChoiceText}</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white/80 p-3 rounded-xl border border-slate-100 text-xs text-slate-600">
+                        <span class="font-semibold text-slate-700"><i class="fa-solid fa-lightbulb text-amber-500 mr-1"></i> Giải thích:</span> ${q.explanation}
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // ==================== KẾT NỐI GOOGLE APPS SCRIPT ====================
+        function toggleConfigModal() {
+            document.getElementById('configModal').classList.toggle('hidden');
+        }
+
+        function saveConfig() {
+            const url = document.getElementById('scriptUrlInput').value.trim();
+            localStorage.setItem('app_script_url', url);
+            googleScriptUrl = url;
+            alert('Đã lưu cấu hình Google Apps Script URL!');
+            toggleConfigModal();
+        }
+
+        function sendDataToGoogleSheets(payload) {
+            const statusElem = document.getElementById('sheetStatus');
+            
+            if (!googleScriptUrl) {
+                statusElem.innerText = 'Chưa cấu hình URL';
+                statusElem.className = 'text-xs font-bold text-slate-400 mt-1';
+                return;
+            }
+
+            statusElem.innerText = 'Đang gửi...';
+            statusElem.className = 'text-xs font-bold text-amber-600 mt-1';
+
+            // Gửi dữ liệu dưới dạng URLSearchParams hoặc JSON qua fetch POST
+            fetch(googleScriptUrl, {
+                method: 'POST',
+                mode: 'no-cors', // Dùng no-cors để tránh chặn CORS từ Apps Script Web App
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            })
+            .then(() => {
+                statusElem.innerText = 'Đã lưu thành công!';
+                statusElem.className = 'text-xs font-bold text-emerald-600 mt-1';
+            })
+            .catch(err => {
+                console.error('Lỗi khi gửi Google Sheets:', err);
+                statusElem.innerText = 'Lỗi kết nối!';
+                statusElem.className = 'text-xs font-bold text-rose-600 mt-1';
+            });
+        }
+
+        function restartQuiz() {
+            userAnswers = new Array(quizData.length).fill(null);
+            document.getElementById('screenResult').classList.add('hidden');
+            document.getElementById('screenStudentInfo').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
